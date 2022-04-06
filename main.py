@@ -114,11 +114,11 @@ def manhanttan_distance(p1, p2):
     return abs(x1 - x2) + abs(y1 - y2)
 
 
-def reconstruct_path(came_from, current, draw):
+def reconstruct_path(came_from, current, draw_function):
     while current in came_from:
         current = came_from[current]
         current.make_path()
-        draw()
+        draw_function()
 
 
 def a_star_algorithm(draw_function, grid, start, end):
@@ -243,7 +243,7 @@ def get_clicked_pos(pos, rows, width):
 
 
 def main(win, width):
-    ROWS = 25
+    ROWS = 50
     grid = make_grid(ROWS, width)
 
     start = None
@@ -292,9 +292,6 @@ def main(win, width):
                     start = None
                     end = None
                     grid = make_grid(ROWS, width)
-
-                if event.key == pygame.K_q:
-                    stop = True
 
     pygame.quit()
 
